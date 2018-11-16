@@ -142,3 +142,18 @@ On y lit:
 I've run ....
 AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' di
 ```
+## Moodledata
+
+Où le volume sera monté:
+```
+/opt/app-root/moodledata
+```
+
+Pour aller chercher le fichier de configuration du muc:
+```
+oc rsync pod/moodle-1-64vhb:/opt/app-root/moodledata/muc/config.php .
+```
+c'est sûr que le nom du pod changera...
+```
+oc delete pvc,deployment,pod,svc,routes -l app=wp001
+```
