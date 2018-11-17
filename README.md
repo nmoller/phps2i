@@ -269,3 +269,26 @@ docker run --rm --network host jordi/ab -n 8 \
 http://moodle-myproject.192.168.99.100.nip.io/
 ```
 `ne pas oublier` le slash final sinon `ab` n'aime pas ça.
+
+```
+oc create configmap moodle-config --from-file=config.php
+```
+et dans le deployment (le yaml dans os):
+```
+    volumeMounts:
+	- mountPath: /opt/app-root/moodledata
+	  name: volume-qgguo
+	- mountPath: /opt/app-root/src/config.php
+	  name: moodle-config
+	  subPath: config.php
+
+...
+volumes:
+    - name: volume-qgguo
+      persistentVolumeClaim:
+        claimName: moodle-dev-001
+    - configMap:
+        defaultMode: 420
+        name: moodle-config
+      name: moodle-config
+```
