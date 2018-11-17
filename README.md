@@ -142,6 +142,29 @@ On y lit:
 I've run ....
 AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' di
 ```
+
+#### Revoir `SCC`
+
+`SCC` security context constraint
+
+Pour que le pod puisse avoir accès au user root:
+```
+oc adm policy add-scc-to-user anyuid developer
+##scc "anyuid" added to: ["developer"]
+oc login -u developer
+#The server uses a certificate signed by an unknown authority.
+#You can bypass the certificate check, but any data you send to the server could be intercepted by others.
+#Use insecure connections? (y/n): y
+
+#Logged into "https://192.168.99.100:8443" as "developer" using existing credentials.
+
+#You have one project on this server: "myproject"
+
+#Using project "myproject".
+oc create -f extras/redis-permission-pod.yaml
+```
+et cette fois, on arrive à modifier les permissions et le container redis demarre sans problèmes.
+
 ## Moodledata
 
 Où le volume sera monté:
