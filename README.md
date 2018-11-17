@@ -251,3 +251,21 @@ COMPOSER_ARGS="--no-dev --no-autoloader"
 ```
 
 Ajouter volume au deployment généré et rouler le `access-pod.yaml` avant de faire l'installation.
+
+Pour que les sessions s'en aillent vers `redis`:
+```
+$CFG->session_handler_class = '\core\session\redis';
+$CFG->session_redis_host = 'redis02.myproject.svc';
+$CFG->session_redis_port = 6379;  // Optional.
+$CFG->session_redis_database = 0;  // Optional, default is db 0.
+$CFG->session_redis_auth = 'redis'; // Optional, default is don't set one.
+$CFG->session_redis_prefix = ''; // Optional, default is don't set one.
+$CFG->session_redis_acquire_lock_timeout = 120;
+$CFG->session_redis_lock_expire = 7200;
+```
+pour tester regarder `moodledata/sessions` et pour produire du volume:
+```
+docker run --rm --network host jordi/ab -n 8 \
+http://moodle-myproject.192.168.99.100.nip.io/
+```
+`ne pas oublier` le slash final sinon `ab` n'aime pas ça.
