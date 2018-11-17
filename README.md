@@ -149,8 +149,31 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 
 Pour que le pod puisse avoir accès au user root:
 ```
+oc login -u system:admin
+#The server uses a certificate signed by an unknown authority.
+#Logged into "https://192.168.99.100:8443" as "system:admin" using existing credentials.
+
+#You have access to the following projects and can switch between them with 'oc project <projectname>':
+#
+#    default
+#    kube-dns
+#    kube-proxy
+#    kube-public
+#    kube-system
+#  * myproject
+#    openshift
+#    openshift-apiserver
+#    openshift-controller-manager
+#    openshift-core-operators
+#    openshift-infra
+#    openshift-node
+#    openshift-service-cert-signer
+#    openshift-web-console
+
+#Using project "myproject".
 oc adm policy add-scc-to-user anyuid developer
 ##scc "anyuid" added to: ["developer"]
+
 oc login -u developer
 #The server uses a certificate signed by an unknown authority.
 #You can bypass the certificate check, but any data you send to the server could be intercepted by others.
