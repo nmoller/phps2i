@@ -142,3 +142,112 @@ On y lit:
 I've run ....
 AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' di
 ```
+
+## Running on os
+```
+oc import-image nmolleruq/s2i-centos7-php71 --confirm 
+```
+ce qui donne comme sortie:
+```
+imagestream.image.openshift.io/s2i-centos7-php71 imported
+
+Name:			s2i-centos7-php71
+Namespace:		myproject
+Created:		2 seconds ago
+Labels:			<none>
+Annotations:		openshift.io/image.dockerRepositoryCheck=2018-11-17T19:33:28Z
+Docker Pull Spec:	172.30.1.1:5000/myproject/s2i-centos7-php71
+Image Lookup:		local=false
+Unique Images:		1
+Tags:			1
+
+latest
+  tagged from nmolleruq/s2i-centos7-php71
+
+  * nmolleruq/s2i-centos7-php71@sha256:b93a3125d1ca2cb1f05fc7594f9f8ac11c72cd8539068a66a32be064a616b9ef
+      2 seconds ago
+
+Image Name:	s2i-centos7-php71:latest
+Docker Image:	nmolleruq/s2i-centos7-php71@sha256:b93a3125d1ca2cb1f05fc7594f9f8ac11c72cd8539068a66a32be064a616b9ef
+Name:		sha256:b93a3125d1ca2cb1f05fc7594f9f8ac11c72cd8539068a66a32be064a616b9ef
+Created:	2 seconds ago
+Annotations:	image.openshift.io/dockerLayersOrder=ascending
+Image Size:	231.5MB in 10 layers
+Layers:		74.7MB	sha256:aeb7866da422acc7e93dcf7323f38d7646f6269af33bcdb6647f2094fc4b3bf7
+		9.391MB	sha256:a968b438296f6dd2ba8edcfbf873bb9841f0c6634533f071047c487db1cd4a45
+		4.745kB	sha256:facb1df24784f27b34979b37d5b1e8a886dcccc5b2fd87548b53f9cb32a41db7
+		189.5kB	sha256:d58087aba1a848bf43f9c417d7715b90b9d88b071b99bb24cf1357c981fc6088
+		84.14MB	sha256:dc2128ad988dfb899eee97923eab83cede81529426346c2c5a33a18c5366739d
+		54.12MB	sha256:e7c1d61b9d14fb388cbb0b05aa4268d3be0413d96f5efe8bfad25900e44d57b8
+		2.34kB	sha256:88a868b547e9d94ad6f5c31e7814a267dba73cbfdd31cfd61ef36b9adeec3706
+		27.11kB	sha256:ccdec39ef1725ec0b6da6eb8347a4e98fc43f5e7216c823c02a2876affe18b35
+		263kB	sha256:011b7bb06c5899592b2ff5192869e220807fe92b6b1126ab4f896117b05ad6d1
+		8.659MB	sha256:8e207bc086a29a193e940c9ac989344ba60a07769f7c9d9406cd09843479f964
+Image Created:	9 days ago
+Author:		<none>
+Arch:		amd64
+Entrypoint:	container-entrypoint
+Command:	/bin/sh -c $STI_SCRIPTS_PATH/usage
+Working Dir:	/opt/app-root/src
+User:		1001
+Exposes Ports:	8080/tcp, 8443/tcp
+Docker Labels:	com.redhat.component=rh-php71-container
+		description=PHP 7.1 available as container is a base platform for building and running various PHP 7.1 applications and frameworks. PHP is an HTML-embedded scripting language. PHP attempts to make it easy for developers to write dynamically generated web pages. PHP also offers built-in database integration for several commercial and non-commercial database management systems, so writing a database-enabled webpage with PHP is fairly simple. The most common use of PHP coding is probably as a replacement for CGI scripts.
+		help=For more information visit https://github.com/sclorg/s2i-php-container
+		io.k8s.description=PHP 7.1 available as container is a base platform for building and running various PHP 7.1 applications and frameworks. PHP is an HTML-embedded scripting language. PHP attempts to make it easy for developers to write dynamically generated web pages. PHP also offers built-in database integration for several commercial and non-commercial database management systems, so writing a database-enabled webpage with PHP is fairly simple. The most common use of PHP coding is probably as a replacement for CGI scripts.
+		io.k8s.display-name=Apache 2.4 with PHP 7.1
+		io.openshift.builder-version="60378a6"
+		io.openshift.expose-services=8080:http
+		io.openshift.s2i.scripts-url=image:///usr/libexec/s2i
+		io.openshift.tags=builder,php,php71,rh-php71
+		io.s2i.scripts-url=image:///usr/libexec/s2i
+		maintainer=SoftwareCollections.org <sclorg@redhat.com>
+		name=centos/php-71-centos7
+		org.label-schema.build-date=20181006
+		org.label-schema.license=GPLv2
+		org.label-schema.name=CentOS Base Image
+		org.label-schema.schema-version=1.0
+		org.label-schema.vendor=CentOS
+		release=1
+		summary=Platform for building and running PHP 7.1 applications
+		usage=s2i build https://github.com/sclorg/s2i-php-container.git --context-dir=7.1/test/test-app centos/php-71-centos7 sample-server
+		version=7.1
+Environment:	PATH=/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/rh/rh-php71/root/usr/bin
+		SUMMARY=Platform for building and running PHP 7.1 applications
+		DESCRIPTION=PHP 7.1 available as container is a base platform for building and running various PHP 7.1 applications and frameworks. PHP is an HTML-embedded scripting language. PHP attempts to make it easy for developers to write dynamically generated web pages. PHP also offers built-in database integration for several commercial and non-commercial database management systems, so writing a database-enabled webpage with PHP is fairly simple. The most common use of PHP coding is probably as a replacement for CGI scripts.
+		STI_SCRIPTS_URL=image:///usr/libexec/s2i
+		STI_SCRIPTS_PATH=/usr/libexec/s2i
+		APP_ROOT=/opt/app-root
+		HOME=/opt/app-root/src
+		BASH_ENV=/opt/app-root/etc/scl_enable
+		ENV=/opt/app-root/etc/scl_enable
+		PROMPT_COMMAND=. /opt/app-root/etc/scl_enable
+		NODEJS_SCL=rh-nodejs8
+		PHP_VERSION=7.1
+		PHP_VER_SHORT=71
+		NAME=php
+		PHP_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/php/
+		APP_DATA=/opt/app-root/src
+		PHP_DEFAULT_INCLUDE_PATH=/opt/rh/rh-php71/root/usr/share/pear
+		PHP_SYSCONF_PATH=/etc/opt/rh/rh-php71
+		PHP_HTTPD_CONF_FILE=rh-php71-php.conf
+		HTTPD_CONFIGURATION_PATH=/opt/app-root/etc/conf.d
+		HTTPD_MAIN_CONF_PATH=/etc/httpd/conf
+		HTTPD_MAIN_CONF_D_PATH=/etc/httpd/conf.d
+		HTTPD_VAR_RUN=/var/run/httpd
+		HTTPD_DATA_PATH=/var/www
+		HTTPD_DATA_ORIG_PATH=/opt/rh/httpd24/root/var/www
+		HTTPD_VAR_PATH=/opt/rh/httpd24/root/var
+		SCL_ENABLED=rh-php71
+```
+
+On va tester une version moodle-35:
+```
+oc new-app s2i-centos7-php71~https://github.com/moodle/moodle.git#MOODLE_35_STABLE
+```
+Le build est lancé sans avoir ajouté la variable d'env:
+```
+COMPOSER_ARGS="--no-dev --no-autoloader"
+```
+
+Ajouter volume au deployment généré et rouler le `access-pod.yaml` avant de faire l'installation.

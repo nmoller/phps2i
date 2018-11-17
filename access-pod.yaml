@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: loader-pod
+  namespace: myproject
+spec:
+  volumes:
+  - name: moodle-storage
+    persistentVolumeClaim:
+     claimName: moodle-dev-001
+  containers:
+  - image: nmolleruq/redis-perm
+    name: redis-fixer
+    resources:
+      limits:
+        cpu: 400m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 100Mi
+    
+    volumeMounts:
+    - mountPath: /var/lib/redis/data
+    # Ne pas modifier le mountpath pour garder image nmolleruq/redis-perm
+      name: moodle-storage
+  restartPolicy: Never
