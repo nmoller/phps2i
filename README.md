@@ -294,6 +294,15 @@ volumes:
 ```
 
 ### Test de charge.
+Pour mieux visualiser (pas pour executer..): installer localement
+
+https://jmeter.apache.org/download_jmeter.cgi?Preferred=ftp%3A%2F%2Fapache.mirrors.tds.net%2Fpub%2Fapache.org%2F
+
+```
+sudo apt install default-jre
+# ajouter l'executable bin/jmeter dans le PATH 
+sudo ln -s
+```
 
 Utiliser outil moodle por créer cours et test plan; par la suite:
 ```
@@ -306,3 +315,7 @@ Voir:
 
 https://octoperf.com/blog/2017/10/19/how-to-analyze-jmeter-results/
 
+Pour mieux visualiser les résultats:
+```
+~/programs/apache-jmeter-5.0/bin/jmeter -g result.jtl -o test001
+```
