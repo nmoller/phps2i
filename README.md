@@ -304,11 +304,15 @@ sudo apt install default-jre
 sudo ln -s
 ```
 
+https://www.blazemeter.com/blog/9-easy-solutions-jmeter-load-test-%E2%80%9Cout-memory%E2%80%9D-failure
+
 Utiliser outil moodle por créer cours et test plan; par la suite:
 ```
-docker run -it --rm -v `pwd`:/jmeter rdpanek/jmeter:latest \
+docker run -it --rm -v `pwd`:/jmeter \
+-e HEAP="-Xms2g -Xmx2g -XX:MaxMetaspaceSize=512m" \
+rdpanek/jmeter:latest \
 --nongui -Jusersfile=users_201811181411_7129.csv \
---testfile testplan_201811181411_7368.jmx --logfile result.jtl
+--testfile testplan_201811181411_7368.jmx --logfile result004.jtl
 ```
 
 Voir:
