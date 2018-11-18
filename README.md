@@ -292,3 +292,17 @@ volumes:
         name: moodle-config
       name: moodle-config
 ```
+
+### Test de charge.
+
+Utiliser outil moodle por créer cours et test plan; par la suite:
+```
+docker run -it --rm -v `pwd`:/jmeter rdpanek/jmeter:latest \
+--nongui -Jusersfile=users_201811181411_7129.csv \
+--testfile testplan_201811181411_7368.jmx --logfile result.jtl
+```
+
+Voir:
+
+https://octoperf.com/blog/2017/10/19/how-to-analyze-jmeter-results/
+
