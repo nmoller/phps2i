@@ -1,3 +1,14 @@
+# Connexion BB
+
+```
+oc secrets new-sshauth uqamena-moodle --ssh-privatekey=$HOME/.ssh/id_rsa_uqamena_h
+oc secrets link builder uqamena-moodle
+oc annotate secret/uqamena-moodle 'build.openshift.io/source-secret-match-uri-1=ssh://bitbucket.org:uqam/moodle.git'
+oc set build-secret --source bc/moodle-bb uqamena-moodle
+# finalement on est prê
+oc new-app --name moodle-bb  s2i-centos7-php71~git@bitbucket.org:uqam/moodle.git#UQAM_35_DEV
+```
+
 # Utilisation des images php s2i.
 
 ``` 
