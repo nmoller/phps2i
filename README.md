@@ -326,6 +326,12 @@ rdpanek/jmeter:latest \
 --testfile testplan_201811181411_7368.jmx --logfile result004.jtl
 ```
 
+Pour être en contrôle des paramètres:
+```
+jmeter --nongui -Jusersfile=users.csv --testfile testplan.jmx --logfile result001.jtl \
+ -Jusers=30 -Jrampup=10 -Jloops=2
+```
+
 Voir:
 
 https://octoperf.com/blog/2017/10/19/how-to-analyze-jmeter-results/

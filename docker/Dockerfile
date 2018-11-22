@@ -11,6 +11,9 @@ RUN INSTALL_PKGS="rh-php71-php-xmlrpc sclo-php71-php-pecl-redis sclo-php71-php-m
     rpm -V $INSTALL_PKGS && \
     yum clean all -y && rm -rf /var/cache/yum
 
+# RUN echo 'extension = mcrypt.so' > /etc/opt/rh/rh-php71/php.d/50-mcrypt.ini
+
+RUN mkdir ${APP_DATA}/moodle-config
 
 # C'est qu'on va traiter les problèmes de permission.....
 COPY ./pre-start/ ${APP_DATA}/php-pre-start
