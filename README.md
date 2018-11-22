@@ -155,6 +155,17 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 ```
 
 ## Running on os
+Bâtir l'image et l'importer comme imagestream:
+```
+cd docker
+docker build -t nmolleruq/php-71-centos-moodle .
+docker push nmolleruq/php-71-centos-moodle:latest
+oc import-image nmolleruq/php-71-centos-moodle:latest --confirm
+```
+
+il y a une imagestream `php-71-centos-moodle` dans openshift. Le `bc` lancera un nouveau build.
+
+
 ```
 oc import-image nmolleruq/s2i-centos7-php71 --confirm 
 ```
@@ -254,13 +265,11 @@ Environment:	PATH=/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/l
 
 On va tester une version moodle-35:
 ```
-oc new-app s2i-centos7-php71~https://github.com/moodle/moodle.git#MOODLE_35_STABLE
-```
-Le build est lancé sans avoir ajouté la variable d'env:
-```
-COMPOSER_ARGS="--no-dev --no-autoloader"
+oc new-app php-71-centos-moodle~https://github.com/moodle/moodle.git#MOODLE_35_STABLE \
+-e COMPOSER_ARGS="--no-dev --no-autoloader"
 ```
 
+#### Si problèmes de permission
 Ajouter volume au deployment généré et rouler le `access-pod.yaml` avant de faire l'installation.
 
 Pour que les sessions s'en aillent vers `redis`:
@@ -338,5 +347,5 @@ https://octoperf.com/blog/2017/10/19/how-to-analyze-jmeter-results/
 
 Pour mieux visualiser les résultats:
 ```
-~/programs/apache-jmeter-5.0/bin/jmeter -g result.jtl -o test001
+jmeter -g result.jtl -o test001
 ```
