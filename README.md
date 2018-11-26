@@ -349,3 +349,5 @@ Pour mieux visualiser les résultats:
 ```
 jmeter -g result.jtl -o test001
 ```
+
+https://www.blazemeter.com/blog/dns-cache-manager-right-way-test-load-balanced-apps
