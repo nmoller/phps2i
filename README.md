@@ -349,5 +349,38 @@ Pour mieux visualiser les résultats:
 ```
 jmeter -g result.jtl -o test001
 ```
-
+```
 https://www.blazemeter.com/blog/dns-cache-manager-right-way-test-load-balanced-apps
+
+sed -i -e "s/YOU_FORGOT_TO_SPECIFY_USERS_CSV_FILE/users/g" testplan.jmx
+sed -i -r -e "s/sesskey=\(.+\)/?sesskey=(.+?)/g" testplan.jmx
+sed -i -e "s/HTTPSampler\.protocol\">/HTTPSampler\.protocol\">https/g" testplan.jmx
+# Après login depend du thème
+sed -i -e "s#&lt;div class=&quot;logininfo&quot;&gt;You are logged in as#id=\"page-my-index\"#g" testplan.jmx
+
+# Changer 2 par 0 dans
+# name="RegexExtractor.default">0
+
+sed -i -e 's/name="RegexExtractor.default">2/name="RegexExtractor.default">0q/' testplan.jmx
+```
+
+Erreurs thème en developper:
+
+```
+<div class="notifytiny debuggingmessage" data-rel="debugging">This page should be using theme  which cannot be initialised. Falling back to the site theme uqam
+	<ul style="text-align: left" data-rel="backtrace">
+		<li>line 704 of /lib/outputlib.php: call to debugging()</li>
+		<li>line 19 of /theme/uqam/classes/helpers/uqam.php: call to theme_config::load()</li>
+		<li>line 27 of /theme/uqam/lib.php: call to theme_uqam\helpers\uqam-&gt;get_setting()</li>
+		<li>line 32 of /theme/uqam/renderers/core_renderer.php: call to theme_uqam_get_setting()</li>
+		<li>line 92 of /theme/bootstrapbase/renderers/core_renderer.php: call to theme_uqam_core_renderer-&gt;render_custom_menu()</li>
+		<li>line 197 of /theme/uqam/layout/includes/header.php: call to theme_bootstrapbase_core_renderer-&gt;custom_menu()</li>
+		<li>line 45 of /theme/uqam/layout/columns2.php: call to include()</li>
+		<li>line 1287 of /lib/outputrenderers.php: call to include()</li>
+		<li>line 1217 of /lib/outputrenderers.php: call to core_renderer-&gt;render_page_layout()</li>
+		<li>line 462 of /lib/outputrenderers.php: call to core_renderer-&gt;header()</li>
+		<li>line 294 of /cache/admin.php: call to plugin_renderer_base-&gt;__call()</li>
+	</ul>
+</div>
+```
+Problème de serialization `PHP` dans la cache applicative redis. Pour s'en sortir, on efface `moodledata/muc/config.php` pour revenir au défaut.
