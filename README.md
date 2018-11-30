@@ -384,3 +384,77 @@ Erreurs thème en developper:
 </div>
 ```
 Problème de serialization `PHP` dans la cache applicative redis. Pour s'en sortir, on efface `moodledata/muc/config.php` pour revenir au défaut.
+
+
+Cloudfront ajoute des affaires:
+```
+jmeter test cloudfront 504/Gateway Time-out
+```
+
+### Visualition pendant tests
+En utilisant un container grafana déjà prêt :
+
+https://github.com/samisalkosuo/grain4jmeter-docker
+
+Comme le premier test n'a pas fonctionne, une recherche m'a méné sur:
+
+https://www.blazemeter.com/blog/how-to-use-grafana-to-monitor-jmeter-non-gui-results
+
+Lançant les scripts de grain4jmeter pour la création du dashboard n'a pas été un grand succès, mais comme les données étaient là.... j'ai pu modifier les requêtes des graphiques pour aller chercher les données. Ce n'est pas automatique.
+
+```
+curl -H "Content-Type: application/json" \
+--data-binary "@create_datasource.json" \
+http://admin:admin@127.0.0.1:3000/api/datasources
+
+curl -H "Content-Type: application/json" \
+--data-binary "@jmeter_dashboard.json" \
+http://admin:admin@127.0.0.1:3000/api/dashboards/db > dashboard.json 2> /dev/null
+
+root@6546305cfb2d:/grain4jmeter# influx
+Connected to http://localhost:8086 version 1.3.5
+InfluxDB shell version: 1.3.5
+> show databases;
+name: databases
+name
+----
+_internal
+> CREATE DATABASE jmeter
+> show databases;
+name: databases
+name
+----
+_internal
+jmeter
+
+## après tests:
+> show measurements
+name: measurements
+name
+----
+X-Grafana-Org-Id:
+jmeter
+jmeter.all.a.avg
+jmeter.all.a.count
+jmeter.all.a.max
+jmeter.all.a.min
+jmeter.all.a.pct90
+jmeter.all.a.pct95
+jmeter.all.a.pct99
+jmeter.all.h.count
+jmeter.all.ko.count
+jmeter.all.ok.avg
+jmeter.all.ok.count
+jmeter.all.ok.max
+jmeter.all.ok.min
+jmeter.all.ok.pct90
+jmeter.all.ok.pct95
+jmeter.all.ok.pct99
+jmeter.all.rb.bytes
+jmeter.all.sb.bytes
+jmeter.test.endedT
+jmeter.test.maxAT
+jmeter.test.meanAT
+jmeter.test.minAT
+jmeter.test.startedT
+```
