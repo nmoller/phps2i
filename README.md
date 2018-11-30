@@ -390,11 +390,15 @@ Cloudfront ajoute des affaires:
 ```
 jmeter test cloudfront 504/Gateway Time-out
 ```
+Voir: 
 
+https://stackoverflow.com/questions/48727606/jmeter-proxy-giving-504-gateway-timeout-error
 ### Visualition pendant tests JMeter
 En utilisant un container grafana déjà prêt :
 
 https://github.com/samisalkosuo/grain4jmeter-docker
+
+Ça doit être la cause car pas d'erreur depuis chez nous.
 
 Comme le premier test n'a pas fonctionne, une recherche m'a méné sur:
 
