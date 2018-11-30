@@ -391,7 +391,7 @@ Cloudfront ajoute des affaires:
 jmeter test cloudfront 504/Gateway Time-out
 ```
 
-### Visualition pendant tests
+### Visualition pendant tests JMeter
 En utilisant un container grafana déjà prêt :
 
 https://github.com/samisalkosuo/grain4jmeter-docker
@@ -458,3 +458,10 @@ jmeter.test.meanAT
 jmeter.test.minAT
 jmeter.test.startedT
 ```
+##### Envoyer les données:
+
+![Graphite JMeter config](images/graphiteJmeter.png)
+
+##### Datasource grafana:
+
+![Datasource grafana](images/datasource.png)
