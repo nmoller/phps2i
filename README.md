@@ -469,3 +469,7 @@ jmeter.test.startedT
 ##### Datasource grafana:
 
 ![Datasource grafana](images/datasource.png)
+
+##### Ce n'est pas si terrible que ça
+
+![Graphiques](images/consistentLoad.png)
